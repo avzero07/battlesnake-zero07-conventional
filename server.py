@@ -10,6 +10,9 @@ For instructions see https://github.com/BattlesnakeOfficial/starter-snake-python
 
 
 class Battlesnake(object):
+    def __init__(self):
+        self.possible_moves = ["up","down","left","right"]
+
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def index(self):
@@ -45,9 +48,9 @@ class Battlesnake(object):
         data = cherrypy.request.json
         print(data)
         # Choose a random direction to move in
-        possible_moves = ["up", "down", "left", "right"]
+        possible_moves = self.possible_moves
         #move = random.choice(possible_moves)
-        move = "up"
+        move = possible_moves[1]
 
         print(f"MOVE: {move}")
         return {"move": move}
@@ -62,6 +65,29 @@ class Battlesnake(object):
         print("END")
         return "ok"
 
+    # Other Methods
+    def next_move(data):
+        '''
+        Next action to be taken based on
+        board data.
+        '''
+        pass
+
+    def check_if_direction_clear(data,move):
+        '''
+        Return True if next move is clear.
+        Return False if next move results in death.
+        '''
+
+        '''
+        Check for
+        1. Boundaries
+        2. Own Body
+        3. Other Body
+        4. Head-to-Head (Special Case)
+        '''
+
+        pass
 
 if __name__ == "__main__":
     server = Battlesnake()

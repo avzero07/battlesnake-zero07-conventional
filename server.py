@@ -12,6 +12,7 @@ For instructions see https://github.com/BattlesnakeOfficial/starter-snake-python
 class Battlesnake(object):
     def __init__(self):
         self.possible_moves = ["up","down","left","right"]
+        self.data = cherrypy.request.json
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
@@ -33,7 +34,7 @@ class Battlesnake(object):
         # This function is called everytime your snake is entered into a game.
         # cherrypy.request.json contains information about the game that's about to be played.
         # TODO: Use this function to decide how your snake is going to look on the board.
-        data = cherrypy.request.json
+        self.data = cherrypy.request.json
 
         print("START")
         return "ok"
@@ -60,7 +61,7 @@ class Battlesnake(object):
     def end(self):
         # This function is called when a game your snake was in ends.
         # It's purely for informational purposes, you don't have to make any decisions here.
-        data = cherrypy.request.json
+        self.data = cherrypy.request.json
 
         print("END")
         return "ok"
@@ -87,6 +88,12 @@ class Battlesnake(object):
         4. Head-to-Head (Special Case)
         '''
 
+        pass
+
+    def find_direction(data):
+        '''
+        Determine direction relative to board.
+        '''
         pass
 
 if __name__ == "__main__":
